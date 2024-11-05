@@ -1,57 +1,88 @@
 
 package tampilan;
 
-import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import toko.user;
+import toko.product;
+import toko.category;
 
-public class frameUser extends javax.swing.JFrame {
+public class framePoduct extends javax.swing.JFrame {
 
-    public frameUser() {
+    public framePoduct() {
         initComponents();
-        showPass();
         loadTabel();
+        comboCategory();
+        otoID();
     }
-    void loadTabel(){
+
+    void loadTabel() {
         DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Uername");
-        model.addColumn("Email");
-        model.addColumn("Full Name");
-        model.addColumn("Status");
-        
+        model.addColumn("ID");
+        model.addColumn("Nama");
+        model.addColumn("Deskripsi");
+        model.addColumn("Harga");
+        model.addColumn("Category");
+
         try {
-            user us = new user();
-            ResultSet data = us.tampilUser();
-            
-            while (data.next()) {                
+            product pd = new product();
+            ResultSet data = pd.tampilProduct();
+
+            while (data.next()) {
                 model.addRow(new Object[]{
-                data.getString("user_name"),
-                data.getString("user_email"),
-                data.getString("user_fullname"),
-                data.getInt("user_status")==1 ? "Aktif" : "Tidak Aktif"
+                    data.getString("product_id"),
+                    data.getString("product_name"),
+                    data.getString("product_desc"),
+                    data.getInt("product_price"),
+                    data.getString("category_name")
                 });
             }
         } catch (SQLException sQLException) {
         }
-        tUser.setModel(model);
+        tProduct.setModel(model);
     }
-    
-   
 
-    void showPass() {
-        tPassword.putClientProperty(FlatClientProperties.STYLE, "showRevealButton:true");
+       void comboCategory() {
+        try {
+            category cat = new category();
+            ResultSet data = cat.tampilComboBox();
+
+            while (data.next()) {
+                String isi = data.getString("category_name");
+                cbCategory.addItem(isi);
+            }
+
+        } catch (SQLException ex) {
+            
+        }
     }
-    void reset(){
-        tUsername.setText(null);
-        tUsername.setEditable(true);
-        tEmail.setText(null);
-        tPassword.setText(null);
-        tFullname.setText(null);
-        cStatus.setSelectedItem(null);
+       void otoID() {
+        try {
+            product prod = new product();
+            ResultSet id = prod.otoID();
+
+            if (id.next()) {
+                int auto = id.getInt("product_id") + 1;
+                tId.setText(String.valueOf(auto));
+
+            } else {
+                tId.setText("1");
+            }
+            tId.setEditable(false);
+
+        } catch (SQLException sQLException) {
+        }
+
+    }
+
+    void reset() {
+        otoID();
+        tNama.setText(null);
+        tDesc.setText(null);
+        tHarga.setText(null);
+        cbCategory.setSelectedItem(null);
     }
 
     /**
@@ -69,59 +100,53 @@ public class frameUser extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        tUsername = new javax.swing.JTextField();
-        tEmail = new javax.swing.JTextField();
-        tPassword = new javax.swing.JPasswordField();
-        tFullname = new javax.swing.JTextField();
-        cStatus = new javax.swing.JComboBox<>();
+        tId = new javax.swing.JTextField();
+        tNama = new javax.swing.JTextField();
+        tHarga = new javax.swing.JTextField();
+        cbCategory = new javax.swing.JComboBox<>();
         bTambah = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tUser = new javax.swing.JTable();
+        tProduct = new javax.swing.JTable();
         bHapus = new javax.swing.JButton();
         bUbah = new javax.swing.JButton();
-        bKembai = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tDesc = new javax.swing.JTextArea();
+        bKembali = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel2.setText("Username");
+        jLabel2.setText("ID");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel3.setText("Email");
+        jLabel3.setText("Nama");
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel4.setText("Password");
+        jLabel4.setText("Category");
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel5.setText("Full Name");
+        jLabel5.setText("Deskripsi");
+        jLabel5.setToolTipText("");
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
-        jLabel6.setText("Status");
+        jLabel6.setText("Harga");
 
-        tUsername.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tId.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
-        tEmail.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        tEmail.addActionListener(new java.awt.event.ActionListener() {
+        tNama.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        tNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tEmailActionPerformed(evt);
+                tNamaActionPerformed(evt);
             }
         });
 
-        tPassword.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        tPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tPasswordActionPerformed(evt);
-            }
-        });
+        tHarga.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
-        tFullname.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-
-        cStatus.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        cStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aktif", "Tidak Aktif" }));
+        cbCategory.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
         bTambah.setBackground(new java.awt.Color(30, 55, 153));
         bTambah.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -137,7 +162,7 @@ public class frameUser extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("USER");
+        jLabel1.setText("PRODUCT");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -156,7 +181,7 @@ public class frameUser extends javax.swing.JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        tUser.setModel(new javax.swing.table.DefaultTableModel(
+        tProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -167,12 +192,12 @@ public class frameUser extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        tProduct.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tUserMouseClicked(evt);
+                tProductMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tUser);
+        jScrollPane1.setViewportView(tProduct);
 
         bHapus.setBackground(new java.awt.Color(30, 55, 153));
         bHapus.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -194,13 +219,17 @@ public class frameUser extends javax.swing.JFrame {
             }
         });
 
-        bKembai.setBackground(new java.awt.Color(30, 55, 153));
-        bKembai.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        bKembai.setForeground(new java.awt.Color(255, 255, 255));
-        bKembai.setText("Kembali");
-        bKembai.addActionListener(new java.awt.event.ActionListener() {
+        tDesc.setColumns(20);
+        tDesc.setRows(5);
+        jScrollPane2.setViewportView(tDesc);
+
+        bKembali.setBackground(new java.awt.Color(30, 55, 153));
+        bKembali.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        bKembali.setForeground(new java.awt.Color(255, 255, 255));
+        bKembali.setText("Kembali");
+        bKembali.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bKembaiActionPerformed(evt);
+                bKembaliActionPerformed(evt);
             }
         });
 
@@ -213,26 +242,30 @@ public class frameUser extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tFullname, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel4))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel4))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(45, 45, 45)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(tId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tNama, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2))))
                         .addGap(29, 29, 29)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -243,7 +276,7 @@ public class frameUser extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(bUbah)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bKembai)))
+                        .addComponent(bKembali)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -253,34 +286,40 @@ public class frameUser extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(tUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tId))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(tEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tNama))
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(tPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbCategory))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(tFullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(cStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(70, 70, 70))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel6))
+                            .addComponent(tHarga))
+                        .addGap(178, 178, 178)))
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bTambah)
                     .addComponent(bHapus)
                     .addComponent(bUbah)
-                    .addComponent(bKembai))
+                    .addComponent(bKembali))
                 .addGap(17, 17, 17))
         );
 
@@ -299,52 +338,52 @@ public class frameUser extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tEmailActionPerformed
+    private void tNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tNamaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tEmailActionPerformed
-
-    private void tPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tPasswordActionPerformed
+    }//GEN-LAST:event_tNamaActionPerformed
 
     private void bTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bTambahActionPerformed
         try {
-            user user = new user();
-            user.setUser_name(tUsername.getText());
-            user.setUser_email(tEmail.getText());
-            user.setUser_password(tPassword.getText());
-            user.setUser_fullname(tFullname.getText());
-            if (cStatus.getSelectedItem().equals("Aktif")) {
-                user.setUser_status(1);
+            product pdt = new product();
+            category ct = new category();
+            pdt.setProduct_name(tNama.getText());
+            pdt.setProduct_desc(tDesc.getText());
+            pdt.setProduct_price(Integer.parseInt(tHarga.getText()));
+            ct.setCategory_name(cbCategory.getSelectedItem().toString());
+            ResultSet data = ct.Konversi();
 
-            } else {
-                user.setUser_status(0);
+            if (data.next()) {
+                String isi = data.getString("category_id");
+                pdt.setProduct_cat_id(Integer.parseInt(isi));
             }
-            user.tambahUser();
+            pdt.tambahProduct();
             loadTabel();
+            reset();
         } catch (SQLException sQLException) {
         }
     }//GEN-LAST:event_bTambahActionPerformed
 
-    private void tUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tUserMouseClicked
-        int baris = tUser.rowAtPoint(evt.getPoint());
-        String userName = tUser.getValueAt(baris, 0).toString();
-        String userEmail = tUser.getValueAt(baris, 1).toString();
-        String userFullname = tUser.getValueAt(baris, 2).toString();
-        String userStatus = tUser.getValueAt(baris, 3).toString();
-        
-        tUsername.setText(userName);
-        tUsername.setEditable(false);
-        tEmail.setText(userEmail);
-        tFullname.setText(userFullname);
-        cStatus.setSelectedItem(userStatus);
-    }//GEN-LAST:event_tUserMouseClicked
+    private void tProductMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tProductMouseClicked
+        int baris = tProduct.rowAtPoint(evt.getPoint());
+        String pdID = tProduct.getValueAt(baris, 0).toString();
+        String pdName = tProduct.getValueAt(baris, 1).toString();
+        String pdDesc = tProduct.getValueAt(baris, 2).toString();
+        String pdPrice = tProduct.getValueAt(baris, 3).toString();
+        String pdCatid = tProduct.getValueAt(baris, 4).toString();
+
+        tId.setText(pdID);
+        tId.setEditable(false);
+        tNama.setText(pdName);
+        tHarga.setText(pdPrice);
+        tDesc.setText(pdDesc);
+        cbCategory.setSelectedItem(pdCatid);
+    }//GEN-LAST:event_tProductMouseClicked
 
     private void bHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHapusActionPerformed
         try {
-            user usr = new user();
-            usr.setUser_name(tUsername.getText());
-            usr.hapusUser();
+            product pd = new product();
+            pd.setProduct_id(Integer.parseInt(tId.getText()));
+            pd.hapusProduct();
         } catch (SQLException sQLException) {
         }
         reset();
@@ -353,27 +392,30 @@ public class frameUser extends javax.swing.JFrame {
 
     private void bUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bUbahActionPerformed
         try {
-            user usr = new user();
-            usr.setUser_name(tUsername.getText());
-            usr.setUser_email(tEmail.getText());
-            usr.setUser_password(tPassword.getText());
-            usr.setUser_fullname(tFullname.getText());
-             if (cStatus.getSelectedItem().equals("Aktif")) {
-                usr.setUser_status(1);
-            } else {
-                usr.setUser_status(0);
+            product pdc = new product();
+            category ct = new category();
+            pdc.setProduct_id(Integer.parseInt(tId.getText()));
+            pdc.setProduct_name(tNama.getText());
+            pdc.setProduct_price(Integer.parseInt(tHarga.getText()));
+            pdc.setProduct_desc(tDesc.getText());
+            ct.setCategory_name(cbCategory.getSelectedItem().toString());
+            ResultSet data = ct.Konversi();
+
+            if (data.next()) {
+                String isi = data.getString("category_id");
+                pdc.setProduct_cat_id(Integer.parseInt(isi));
             }
-            usr.ubahUser();
+            pdc.ubahProduct();
         } catch (SQLException sQLException) {
         }
         loadTabel();
         reset();
     }//GEN-LAST:event_bUbahActionPerformed
 
-    private void bKembaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bKembaiActionPerformed
+    private void bKembaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bKembaliActionPerformed
         new mainMenu().setVisible(true);
         dispose();
-    }//GEN-LAST:event_bKembaiActionPerformed
+    }//GEN-LAST:event_bKembaliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -398,17 +440,17 @@ public class frameUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frameUser().setVisible(true);
+                new framePoduct().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bHapus;
-    private javax.swing.JButton bKembai;
+    private javax.swing.JButton bKembali;
     private javax.swing.JButton bTambah;
     private javax.swing.JButton bUbah;
-    private javax.swing.JComboBox<String> cStatus;
+    private javax.swing.JComboBox<String> cbCategory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -418,10 +460,11 @@ public class frameUser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField tEmail;
-    private javax.swing.JTextField tFullname;
-    private javax.swing.JPasswordField tPassword;
-    private javax.swing.JTable tUser;
-    private javax.swing.JTextField tUsername;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea tDesc;
+    private javax.swing.JTextField tHarga;
+    private javax.swing.JTextField tId;
+    private javax.swing.JTextField tNama;
+    private javax.swing.JTable tProduct;
     // End of variables declaration//GEN-END:variables
 }

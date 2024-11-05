@@ -48,31 +48,38 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel6" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="cStatus" min="-2" pref="242" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jLabel2" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="tFullname" min="-2" pref="242" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel2" alignment="0" min="-2" pref="70" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="tUsername" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
-                                              <Component id="tEmail" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
-                                              <Component id="tPassword" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
+                                              <Component id="tId" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
+                                              <Component id="tNama" alignment="1" min="-2" pref="242" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="cbCategory" min="-2" pref="242" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel6" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="61" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tHarga" pref="242" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane2" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -87,7 +94,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="bUbah" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="bKembai" min="-2" max="-2" attributes="0"/>
+                          <Component id="bKembali" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -100,43 +107,52 @@
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tId" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tNama" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbCategory" alignment="3" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tFullname" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="tHarga" alignment="0" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bTambah" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bHapus" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bUbah" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bKembai" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bKembali" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
@@ -149,7 +165,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Username"/>
+            <Property name="text" type="java.lang.String" value="ID"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -157,7 +173,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Email"/>
+            <Property name="text" type="java.lang.String" value="Nama"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -165,7 +181,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Password"/>
+            <Property name="text" type="java.lang.String" value="Category"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
@@ -173,7 +189,8 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Full Name"/>
+            <Property name="text" type="java.lang.String" value="Deskripsi"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -181,53 +198,40 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="12" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Status"/>
+            <Property name="text" type="java.lang.String" value="Harga"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tUsername">
+        <Component class="javax.swing.JTextField" name="tId">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="12" style="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tEmail">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="SansSerif" size="12" style="0"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tEmailActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JPasswordField" name="tPassword">
+        <Component class="javax.swing.JTextField" name="tNama">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="12" style="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tPasswordActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tNamaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="tFullname">
+        <Component class="javax.swing.JTextField" name="tHarga">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="12" style="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cStatus">
+        <Component class="javax.swing.JComboBox" name="cbCategory">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="SansSerif" size="12" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Aktif"/>
-                <StringItem index="1" value="Tidak Aktif"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <AuxValues>
@@ -287,7 +291,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="USER"/>
+                <Property name="text" type="java.lang.String" value="PRODUCT"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -299,7 +303,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tUser">
+            <Component class="javax.swing.JTable" name="tProduct">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
@@ -311,7 +315,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tUserMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tProductMouseClicked"/>
               </Events>
             </Component>
           </SubComponents>
@@ -350,7 +354,22 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bUbahActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bKembai">
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="tDesc">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JButton" name="bKembali">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="37" red="1e" type="rgb"/>
@@ -364,7 +383,7 @@
             <Property name="text" type="java.lang.String" value="Kembali"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bKembaiActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bKembaliActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

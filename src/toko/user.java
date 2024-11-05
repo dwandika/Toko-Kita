@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package toko;
 
 import java.sql.Connection;
@@ -11,10 +7,6 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author USER
- */
 public class user {
 
     String user_name, user_email, user_password, user_fullname;
@@ -70,6 +62,7 @@ public class user {
     public void setUser_status(int user_status) {
         this.user_status = user_status;
     }
+
     public void tambahUser() {
         query = "INSERT INTO user VALUES(?,?,MD5(?),?,?)";
         try {
@@ -85,6 +78,109 @@ public class user {
         } catch (SQLException sQLException) {
             JOptionPane.showMessageDialog(null, "User Gagal Ditambahkan");
         }
-        
+
     }
+
+    public ResultSet tampilUser() {
+        query = "SELECT * FROM user;";
+        try {
+            st = konek.createStatement();
+            rs = st.executeQuery(query);
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null, "Data Gagal Ditampilkan");
+        }
+
+        return rs;
+    }
+
+    public void hapusUser() {
+        query = "DELETE FROM user WHERE user_name = ?";
+        try {
+            ps = konek.prepareStatement(query);
+            ps.setString(1, user_name);
+            ps.executeUpdate();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "User Berhasil DiHapus");
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null, "User Gagal DiHapus");
+        }
+    }
+
+    public void ubahUser() {
+        if (user_password.equals("")) {
+
+            query = "UPDATE user SET user_email = ?,"
+                    + " user_fullname = ?,"
+                    + " user_status = ?"
+                    + " WHERE user_name = ?";
+            try {
+
+                ps = konek.prepareStatement(query);
+
+                ps.setString(1, user_email);
+                ps.setString(2, user_fullname);
+                ps.setInt(3, user_status);
+                ps.setString(4, user_name);
+
+                ps.executeUpdate();
+                ps.close();
+                JOptionPane.showMessageDialog(null, "User Berhasil Di Ubah");
+
+            } catch (SQLException sQLException) {
+                JOptionPane.showMessageDialog(null, "User Gagal Di Ubah");
+            }
+
+        } else {
+             query = "UPDATE user SET user_email = ?,"
+                    + " user_fullname = ?,"
+                    + " user_status = ?,"
+                    + " user_password = MD5(?)"
+                    + " WHERE user_name = ?";
+            try {
+
+                ps = konek.prepareStatement(query);
+
+                ps.setString(1, user_email);
+                ps.setString(2, user_fullname);
+                ps.setInt(3, user_status);
+                ps.setString(4, user_password);
+                ps.setString(5, user_name);
+
+                ps.executeUpdate();
+                ps.close();
+                JOptionPane.showMessageDialog(null, "User Berhasil Di Ubah");
+
+            } catch (SQLException sQLException) {
+                JOptionPane.showMessageDialog(null, "User Gagal Di Ubah");
+            }
+        }
+    }
+    public void Login(){
+        query = "SELECT * FROM user WHERE user_name = ? AND user_password = MD5(?)";
+        try {
+            ps = konek.prepareStatement(query);
+            ps.setString(1, user_name);
+            ps.setString(2, user_password);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                sesi.setStatus("Aktif");
+                sesi.setNama("user_fullname");
+                sesi.setUsername("user_name");
+                sesi.setEmail("user_email");
+            } else {
+                sesi.setStatus("Tidak Aktif");
+                JOptionPane.showMessageDialog(null, "Username atau password salah");
+            }
+        } catch (SQLException sQLException) {
+            JOptionPane.showMessageDialog(null, "Gagal Login");
+            
+        }
+    }
+   public void Logout(){
+       sesi.setStatus("");
+       sesi.setNama("");
+       sesi.setUsername("");
+       sesi.setEmail("");
+   }
 }
